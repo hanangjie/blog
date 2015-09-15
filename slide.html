@@ -7,6 +7,7 @@
 </head>
 <style>
     *{margin:0px;padding:0px;}
+    /*样式名 只有foreverSlide可修改 内部不可改*/
     .foreverSlide{width:640px;height:400px;
         overflow: hidden;margin:auto;position:relative;}
     .foreverSlide_box{height:400px;left:0px;top:0px;position:absolute;}
@@ -26,6 +27,7 @@
     .forever-right{position:absolute;right:0px;top:0px;height:50px;width:50px;background:#fff;}
 </style>
 <body>
+    <!--轮播html-->
     <div class="foreverSlide">
         <ul class="foreverSlide_box">
             <li rel="标题1"><img src="images/desktop.jpg" /></li>
@@ -153,14 +155,18 @@
             }
         };
     })(jQuery);
-    $(".foreverSlide").foreverSlide({
-        speed:500,
-        spe:2000,
-        pointerAlign:"left",
-        titleHtml:"rel",//标题属性
-        hasHandle:true
-    });
 
+    //调用组件
+    $(".foreverSlide").foreverSlide({
+        speed:300,//动效速度
+        spe:1000,//轮播间隔
+        pointerAlign:"center",//点的方向
+        titleHtml:"rel",//标题属性
+        hasHandle:false,//是否显示左右操作键
+        hasTitle:false,//是否显示标题
+        hasPointer:false//是否显示轮播点
+    });
 </script>
+
 </body>
 </html>
