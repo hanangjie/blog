@@ -37,13 +37,13 @@
     (function($){
         $.fn.foreverSlide=function(option){
             var opt={
-                speed:300,
-                spe:1000,
+                speed:300,//动效速度
+                spe:1000,//轮播间隔
                 pointerAlign:"center",//点的方向
                 titleHtml:"rel",//标题属性
-                hasHandle:false,
-                hasTitle:false,
-                hasPointer:false
+                hasHandle:false,//是否显示左右操作键
+                hasTitle:false,//是否显示标题
+                hasPointer:false//是否显示轮播点
             };
             option=$.extend(opt,option);
             var $this=$(this)
