@@ -17,18 +17,6 @@ var hzw = {
             '<ul class="treeview-menu">' +
             '<li><a href="doc/role-css.html" type="ajax">css规范</a></li>' +
             '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
             '</ul>' +
 
             '</li>';
