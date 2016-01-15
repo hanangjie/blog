@@ -18,6 +18,8 @@ var hzw = {
             '<li><a href="doc/role-css.html" type="ajax">css规范</a></li>' +
             '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
             '</ul>' +
+           
+
 
             '</li>';
         $("#sidebar-menu").html(left);
@@ -72,4 +74,20 @@ var hzw = {
 
     }
 };
+
+function setScroll(){
+/*    $(".slimScrollDiv").slimScroll({
+        height: $(window).height(),
+        alwaysVisible: true
+    });*/
+    $(".sidebar").slimscroll({
+        height: $(window).height() - $(".main-header").height() + "px",
+        size: "3px",
+        alwaysVisible: true
+    })
+}
+$(function(){
+    setScroll();
+    $(window).on("resize",setScroll);
+});
 
