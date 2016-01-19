@@ -8,22 +8,7 @@
 var hzw = {
 //左侧导航
     leftNav: function () {
-
-        var left = '<li class="header">主导航</li>' +
-            '<li class="treeview " privileges="XTSZ">' +
-            '<a href="javascript:">' +
-            ' <span>前端规范</span> <i class="fa fa-angle-left pull-right"></i>' +
-            '</a>' +
-            '<ul class="treeview-menu">' +
-            '<li><a href="doc/role-css.html" type="ajax">css规范</a></li>' +
-            '<li><a href="doc/role-html.html" type="ajax">html规范</a></li>' +
-            '</ul>' +
-           
-
-
-            '</li>';
-        $("#sidebar-menu").html(left);
-        $("#sidebar-menu a[type='ajax']").each(function () {
+      /*  $("#sidebar-menu a[type='ajax']").each(function () {
            $(this).click(function(e){
                e.preventDefault();
                var href=$(this).attr("href");
@@ -34,7 +19,7 @@ var hzw = {
                    $(window).scrollTop(0);
                });
            });
-        });
+        });*/
 
 
     }
@@ -76,10 +61,6 @@ var hzw = {
 };
 
 function setScroll(){
-/*    $(".slimScrollDiv").slimScroll({
-        height: $(window).height(),
-        alwaysVisible: true
-    });*/
     $(".sidebar").slimscroll({
         height: $(window).height() - $(".main-header").height() + "px",
         size: "3px",
@@ -87,7 +68,26 @@ function setScroll(){
     })
 }
 $(function(){
+    var Workspace = Backbone.Router.extend({
+        routes: {
+            "doc/*actions" : "docDefaultRoute"
+        },
+        docDefaultRoute : function(actions){
+            $("#sidebar-menu .treeview").find("li").removeClass("active");
+            var href="doc/"+actions+".html";
+            $("[href='#doc/"+actions+"']").closest("li").addClass("active");
+            $.ajax({
+                url:href
+            }).done(function(e){
+                $(".content").html(e);
+                $(window).scrollTop(0);
+            });
+        }
+    });
+    var app_router = new Workspace;
+    Backbone.history.start();
     setScroll();
     $(window).on("resize",setScroll);
+    hzw.leftNav();
 });
 

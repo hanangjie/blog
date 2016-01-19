@@ -23,6 +23,8 @@
     <link href="plugins/bootstrap-checkbox/css/bootstrap-checkbox.css" rel="stylesheet" type="text/css" />
     <link href="css/app.css" rel="stylesheet" />
     <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/backbone-min.js"></script>
     <script src="plugins/jQuery/jquery.slimscroll.min.js"></script>
     <script src="js/main.js"></script>
 </head>
@@ -39,10 +41,15 @@
     <aside class="main-sidebar">
         <section class="sidebar">
             <ul class="sidebar-menu" id="sidebar-menu">
+                    <li class="header">主导航</li>
+                    <li class="treeview">
+                        <a href="javascript:"> <span>前端规范</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li><a href="#doc/role-css">css规范</a></li>
+                            <li><a href="#doc/role-html">html规范</a></li>
+                        </ul>
+                    </li>
             </ul>
-            <script>
-                hzw.leftNav();
-            </script>
         </section>
         <!-- /.sidebar -->
     </aside>
