@@ -70,19 +70,21 @@ function setScroll(){
 $(function(){
     var Workspace = Backbone.Router.extend({
         routes: {
-            "doc/*actions" : "docDefaultRoute"
+            "*actions" : "docDefaultRoute"
         },
         docDefaultRoute : function(actions){
             $("#sidebar-menu .treeview").find("li").removeClass("active");
-            var href="doc/"+actions+".html";
-            $("[href='#doc/"+actions+"']").closest("li").addClass("active");
-            $.ajax({
-                url:href
-            }).done(function(e){
-                $(".content").html(e);
-                $(window).scrollTop(0);
-            });
+            var href=actions+".html";
+            $("[href='#"+actions+"']").closest("li").addClass("active");
+                $.ajax({
+                    url:href
+                }).done(function(e){
+                    $(".content").html(e);
+                    $(window).scrollTop(0);
+                });
+
         }
+
     });
     var app_router = new Workspace;
     Backbone.history.start();
