@@ -1,18 +1,29 @@
 
-<div class="breadcrumb" style="margin-bottom: 0px;"><input type="button" value="运行" onclick="run()"></div>
+<div class="breadcrumb" style="margin-bottom: 0px;">
+    <input type="button" value="运行" onclick="run()">
+</div>
 
-<div id="editor" class="span5">some text</div>
+<div id="editor" class="span5">
+
+</div>
 <script>
-            var editor = ace.edit("editor");
-            var JavaScriptMode = ace.require("ace/mode/html").Mode;
-            editor.session.setMode(new JavaScriptMode());
-            editor.setTheme("ace/theme/twilight");
-            function run(){
-                var iframe=document.getElementById("show");
-                iframe.contentWindow.document.open();
-                iframe.contentWindow.document.write(editor.getValue());
-                iframe.contentWindow.document.close();
-            }
+
+    var editor = ace.edit("editor");
+    var JavaScriptMode = ace.require("ace/mode/html").Mode;
+    editor.session.setMode(new JavaScriptMode());
+    editor.setTheme("ace/theme/twilight");
+
+    $.ajax({
+        url:"plugin/slide_html.html"
+    }).done(function(e){
+        editor.setValue(e);
+    });
+    function run(){
+        var iframe=document.getElementById("show");
+        iframe.contentWindow.document.open();
+        iframe.contentWindow.document.write(editor.getValue());
+        iframe.contentWindow.document.close();
+    }
 </script>
 <iframe src="" id="show" frameborder="0" ></iframe>
 
