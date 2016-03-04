@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.10.2.js"></script>
+</head>
+<body>
+<script>
+
+    function loadingAnimate(opt){
+        var option={
+            color:"orangered",
+            height:4,
+            timeout:10000
+        };
+        opt= $.extend(option,opt);
+        var html='<div id="loadingAnimate" style="height:'+opt.height+'px;position: fixed;top:0px;left: 0px;z-index:100000;background: '+opt.color+'"></div>';
+        $("body").append(html);
+        var $loadingAnimate=$("#loadingAnimate");
+        $loadingAnimate.animate({width:"100%"},opt.timeout,function(){
+            $loadingAnimate.remove();
+            $loadingAnimate=null;
+        });
+        var t=setInterval(function(){
+           if(obj.complate()){
+               $loadingAnimate.stop().css("width","100%");
+               clearInterval(t);
+               setTimeout(function(){
+                   $loadingAnimate.remove();
+                   $loadingAnimate=null;
+               },500);
+           }
+        },20);
+    }
+    /*调用
+    *complate 请求优先于timeout时间完成
+    * */
+    var obj={
+        complate:function(){
+            return false;
+        }
+    };
+    var a=true;
+    setTimeout(function(){
+        $.ajax({
+            url:"modal.html"
+        }).done(function(){
+            obj.complate=function(){
+                return a;
+            };
+        });
+
+    },2000);
+    loadingAnimate(obj);
+
+</script>
+</body>
+</html>
