@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/zepto.min.js"></script>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0"/>
+</head>
+<body>
+    <div id="pull" style="background: #000;height: 100px;">
+        </div>
+<script>
+    $(function(){
+        //下拉刷新
+        $.scrollRefresh({
+            id:"pull",
+            size:60,
+            call: function(){
+                console.log(1);
+            }
+        });
+    });
+
+    /**
+     * Created by hzw on 2016/1/27.
+     */
+
+    //下拉刷新插件
+    ;(function($){
+        $.scrollRefresh=function(opt){
+            var options={
+                id:"",
+                size:40,
+                call:""
+            };
+            opt= $.extend(options,opt);
+            var touchObj=document.getElementById(opt.id);
+            var moveObj=$("#"+opt.id);
+            var init = {sx:0,sy:0,ex:0,ey:0};
+            var size=opt.size;
+            var tipsHtml='<div style="text-align: center;color: #999;font-size: 0.875rem;' +
+                    'line-height: 1.125rem;padding: .625rem 0;height: 1.25rem;"' +
+                    ' id="goods-reload">' +
+                    '</div>';
+            moveObj.prepend(tipsHtml);
+            var $goodsReload=$("#goods-reload");
+
+            touchObj.addEventListener("touchstart",function(){
+                init.sx = event.targetTouches[0].pageX;
+                init.sy = event.targetTouches[0].pageY;
+                init.ex = init.sx;
+                init.ey = init.sy;
+            }, false);
+
+            touchObj.addEventListener("touchmove",function() {
+                init.ey=event.targetTouches[0].pageY;
+                if(document.getElementById(opt.id).scrollTop==0 && init.ey>init.sy){
+                    event.preventDefault();//阻止触摸时浏览器的缩放、滚动条滚动
+                    init.ex = event.targetTouches[0].pageX;
+                    init.ey = event.targetTouches[0].pageY;
+                    moveObj.css({
+                        "-webkit-transform":"translateY("+(init.ey-init.sy)+"px)"
+                    });
+                    if(init.ey-init.sy>size){
+                        $goodsReload.html("释放刷新");
+                    }else{
+                        $goodsReload.html("");
+                    }
+                }
+            }, false);
+
+            touchObj.addEventListener("touchend",function() {
+                if((init.ey-init.sy)>size){
+                    $goodsReload.html("正在加载");
+                    moveObj.animate({"-webkit-transform":"translateY("+size+"px)"},160);
+                    if(typeof opt.call=="function"){
+                        opt.call();
+                    }
+                }else{
+                    moveObj.animate({"-webkit-transform":"translateY(0px)"},160);
+                }
+            }, false);
+        }
+    })(Zepto);
+</script>
+</body>
+</html>
