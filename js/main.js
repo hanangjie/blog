@@ -76,20 +76,26 @@ $(function(){
             $("#sidebar-menu .treeview").find("li").removeClass("active");
             var href=actions+".html";
             $("[href='#"+actions+"']").closest("li").addClass("active");
+            $(".loading").show();
                 $.ajax({
                     url:href
                 }).done(function(e){
+                    $(".loading").hide();
                     $(".content").html(e);
                     $(window).scrollTop(0);
+                }).fail(function(){
+                    $(".loading").hide();
                 });
-
         }
 
     });
     var app_router = new Workspace;
     Backbone.history.start();
+
+    //左侧导航滚动
     setScroll();
     $(window).on("resize",setScroll);
+    //左侧导航内容填充
     hzw.leftNav();
 });
 

@@ -364,3 +364,39 @@
 .fa-spin:before {
     color: #fff;
 }
+
+/* 页面样式 */
+
+.loading{
+    height: 100px;
+    text-align: center;
+    position: fixed;
+    left: 40%;
+    top: 50%;
+    width: 20%;
+}
+.loading .overlay .fa-spin:before{
+    color: #d9d9d9
+}
+.loading .overlay .fa-spin{
+    margin-right: 12px;
+}
+.loading .overlay{
+    height: 100px;
+    line-height: 100px;
+    background: #fff;
+    z-index: 10001;
+    position: relative;
+    border-radius: 15px;
+}
+.loading:before{
+    content:"";
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.3;
+    position: fixed;
+    left: 0;
+    top:0;
+};
