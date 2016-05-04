@@ -36,6 +36,10 @@ $(function(){
 						$("#td"+x+"_"+y).removeClass("food");
 						items++;
 						time--;
+						if(localStorage.number>88){
+							localStorage.number=1;
+						}
+						$(".mote").attr("src","http://hanangjie.github.io/blog/images/play/first"+localStorage.number+".jpg");
 						localStorage.number++;
 						foot();
 					}else if($("#td"+x+"_"+y).attr("class")=="on"||x<0||x>19||y<0||y>19){
