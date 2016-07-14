@@ -1,0 +1,124 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+*{
+  padding:0px;
+  margin:0px;
+	cursor:default;
+}
+li{
+	float: left;
+}
+</style>
+
+<body onload="draw('canvas')">
+<canvas id="canvas" width="200" height="200" style="border:1px solid #d3d3d3;"></canvas>
+
+<input type="text" id="fontsize" placeholder="字体大小"  >
+<input type="text" id="areacont" placeholder="位置用逗号隔开" >
+<input type="text" id="cont" placeholder="文字" ><button id="sub">确认</button>
+<ul id="faceList">
+	<li><img src="./img/a.png" alt=""></li>
+</ul>
+</body>
+
+<script>
+	function draw(id){
+		/*var canvas=document.getElementById(id);
+		if(canvas==null)
+			return false;
+		
+		var content=canvas.getContext('2d');
+		content.fillStyle="#fff";
+		content.fillRect(0,0,1000,600);*/
+		
+	}
+	
+	function zfx(id,x,y,oldx,oldy){
+		var canvas=document.getElementById(id);
+		if(canvas==null)
+			return false;
+		var content=canvas.getContext('2d');
+			content.fillStyle="#09C";
+			content.beginPath();
+			content.quadraticCurveTo(x,y,oldx,oldy);
+			content.closePath();
+			content.fill();
+			content.stroke();
+			
+		var mouse=document.getElementById("mouse");
+		mouse.innerHTML=x+","+y;
+	}
+	
+	var canvas=document.getElementById("canvas");
+	var oldx;
+	var oldy;
+	canvas.onmousedown=function(m){
+		var down_e = m || window.event;  
+		if ((navigator.userAgent.indexOf("Firefox") != -1)) {
+				oldx=down_e.layerX;
+				oldy=down_e.layerY;
+            }
+            else {
+				oldx=down_e.x;
+				oldy=down_e.y;
+            }
+
+		document.getElementById("areacont").value=oldx+","+oldy
+		/*canvas.onmousemove=function(eq){
+			
+			var e = eq || window.event;    
+			
+			if ((navigator.userAgent.indexOf("Firefox") != -1)) {
+				zfx("canvas",e.layerX,e.layerY,oldx,oldy);
+				oldx=e.layerX;
+				oldy=e.layerY;
+            }
+            else {
+				zfx("canvas",e.x,e.y,oldx,oldy);
+				oldx=e.x;
+				oldy=e.y;
+            }
+		}*/
+	}
+	canvas.onmouseup=function(){
+		canvas.onmousemove=function(){
+		}
+	}
+function save(canvas){
+	document.getElementById("temp").value=canvas.toDataURL("image/jpeg");
+}
+
+	var chooseImg={};
+	//选择表情
+	document.getElementById("faceList").onclick=function(e){
+		fileImg(e)
+	}
+	//输入文字
+	document.getElementById("sub").onclick=function(e){
+		fileImg(chooseImg);
+		var val=document.getElementById("cont").value;
+		var c=document.getElementById("canvas");
+		var ctx=c.getContext("2d");
+		var area=document.getElementById("areacont").value;
+		var font=document.getElementById("fontsize").value;
+		ctx.font=(font||20)+"px SimHei";
+		ctx.fillText(val,area.split(",")[0],area.split(",")[1]);
+	}
+
+	function fileImg(e){
+		var c=document.getElementById("canvas");
+		c.width=e.target.width+100;
+		c.height=e.target.height+100;
+		var ctx=c.getContext("2d");
+		ctx.clearRect(0,0,1000,1000);
+		ctx.drawImage(e.target,50,50);
+		chooseImg=e;
+	}
+	
+</script>
+</html>
