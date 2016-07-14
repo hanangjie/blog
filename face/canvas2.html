@@ -14,18 +14,47 @@ li{
 	float: left;
 	list-style: none;
 }
+#faceList{
+	margin-top: 200px;
+}
+.editorBox{
+	position: fixed;
+	width: 500px;;
+	top:0;
+	left:0;
+	background: #fff;
+}
+	#canvas,.tool{
+		float: left;
+	}
+	.tool,.tip{
+		float: left;
+		width: 270px;
+		font-size: 14px;
+	}
+	.tool input,button{
+		float: left;
+		margin-top: 20px;;
+	}
 </style>
 
 <body onload="draw('canvas')">
-<canvas id="canvas" width="200" height="200" style="border:1px solid #d3d3d3;"></canvas>
-
-<input type="text" id="fontsize" placeholder="字体大小"  >
-<input type="text" id="areacont" placeholder="位置用逗号隔开" >
-<input type="text" id="cont" placeholder="文字" ><button id="sub">确认</button>
-<ul id="faceList">
-	<li><img src="./img/a.png" alt=""></li>
-	<li><img src="./img/b.png" alt=""></li>
-</ul>
+<div class="editorBox">
+	<canvas id="canvas" width="200" height="200" style="border:1px solid #d3d3d3; "></canvas>
+	<div class="tip">
+		注：文字位置用鼠标点击自由选择,
+			由于图片数量众多建议页面长期打开
+	</div>
+	<div class="tool">
+		<input type="text" id="fontsize" placeholder="字体大小"  >
+		<input type="text" id="areacont" placeholder="位置用逗号隔开" >
+		<input type="text" id="cont" placeholder="文字" ><button id="sub">确认</button>
+	</div>
+</div>
+	<ul id="faceList">
+		<li><img src="./img/a.png" alt=""></li>
+		<li><img src="./img/b.png" alt=""></li>
+	</ul>
 <script>
 	var html="";
 	for(var i=1;i<38;i++){
