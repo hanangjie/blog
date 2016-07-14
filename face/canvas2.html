@@ -12,6 +12,7 @@
 }
 li{
 	float: left;
+	list-style: none;
 }
 </style>
 
@@ -23,7 +24,17 @@ li{
 <input type="text" id="cont" placeholder="文字" ><button id="sub">确认</button>
 <ul id="faceList">
 	<li><img src="./img/a.png" alt=""></li>
+	<li><img src="./img/b.png" alt=""></li>
 </ul>
+<script>
+	var html="";
+	for(var i=1;i<38;i++){
+		for(var q=0;q<40;q++){
+			html+='<li><img src="./img/'+i+'_'+q+'thumbnail.jpg" alt=""></li>'
+		}
+	}
+	document.getElementById("faceList").innerHTML=html;
+</script>
 </body>
 
 <script>
