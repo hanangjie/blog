@@ -3,8 +3,13 @@
 	<title></title>
 </head>
 <body>
-	<script type="text/javascript">
-	alert(navigator.connection)
-	</script>
 </body>
+	<script type="text/javascript">
+	var html=""
+	for(var x in navigator.connection){
+		html+=x+":"+navigator.connection[x]+"<br>"
+	}
+	alert(html)
+	document.body.innerHTML=html
+	</script>
 </html>
