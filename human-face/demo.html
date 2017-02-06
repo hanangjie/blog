@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="face.js"></script>
+    <script src="ccv.js"></script>
+    <script src="jquery.facedetection.js"></script>
+</head>
+<style>
+    .picture-container {
+        position: relative;
+        width: 600px;
+        height: auto;
+        margin: 20px auto;
+        border: 10px solid #fff;
+        box-shadow: 0 5px 5px #000;
+    }
+    .picture {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .face {
+        position: absolute;
+        border: 2px solid #fff;
+    }
+</style>
+<body>
+<div class="picture-container">
+    <img src="www.jpg" alt="" id="qw">
+</div>
+<script>
+    $(function(){
+
+        $("#qw").faceDetection({
+            complete: function (q,faces) {
+                console.log(faces);
+                for (var i = 0; i < faces.length; i++) {
+                    var html='<div class="face" style=" left:'+faces[i].positionX + 'px;' +
+                            'top:'+     faces[i].positionY + 'px;'+
+                            'width:'+  faces[i].width+ 'px;'+
+                            'height:'+   faces[i].height + 'px;'+
+                            '"></div>';
+                    $("#qw").after(html);
+                }
+
+            }
+        })
+    })
+</script>
+</body>
+</html>
