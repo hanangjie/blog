@@ -36,6 +36,12 @@ li{
 		float: left;
 		margin-top: 20px;;
 	}
+	#faceList li{
+		width:100px;height: 100px;
+	}
+	#faceList li img{
+		width: 100%
+	}
 </style>
 
 <body onload="draw('canvas')">
@@ -52,15 +58,11 @@ li{
 	</div>
 </div>
 	<ul id="faceList">
-		<li><img src="./img/a.png" alt=""></li>
-		<li><img src="./img/b.png" alt=""></li>
 	</ul>
 <script>
 	var html="";
-	for(var i=1;i<38;i++){
-		for(var q=0;q<40;q++){
-			html+='<li><img src="./img/'+i+'_'+q+'thumbnail.jpg" alt=""></li>'
-		}
+	for(var i=1;i<1738;i++){
+			html+='<li><img src="./img/as ('+i+').jpg" alt=""></li>'
 	}
 	document.getElementById("faceList").innerHTML=html;
 </script>
