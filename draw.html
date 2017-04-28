@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>无标题文档</title>
+<title>画画小程序</title>
 </head>
 <style>
 *{
@@ -46,7 +46,7 @@
 			content.stroke();
 			
 		var mouse=document.getElementById("mouse");
-		mouse.innerHTML=x+","+y;
+		//mouse.innerHTML=x+","+y;
 	}
 	
 	var canvas=document.getElementById("canvas");
@@ -109,7 +109,9 @@
 		
 	},false)
 function save(canvas){
-	document.getElementById("temp").value=canvas.toDataURL("image/jpeg");
+	//document.getElementById("temp").value=canvas.toDataURL("image/jpeg");
+	var w=window.open(canvas.toDataURL("image/jpeg"),"a")
+	//w.document.write("<img src='"+canvas.toDataURL("image/jpeg")+"' alt='from canvas'/>");  
 }
 	
 </script>
