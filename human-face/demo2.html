@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     
-    <script src="jquery.js"></script>
     <script src="face.js"></script>
     <script src="ccv.js"></script>
     
-    <script src="jquery.facedetection.js"></script>
+    <script src="facedetection.js"></script>
 </head>
 <style>
     .picture-container {
@@ -31,8 +30,10 @@
     }
 </style>
 <body>
-<div class="picture-container">
+<div class="picture-container" id="box">
     <img src="www.jpg" alt="" id="qw">
+
+    <canvas id="canvas"></canvas>
 </div>
 <!--script>
         faceDetection({
@@ -52,23 +53,26 @@
         })
 </script-->
 <script>
-$(function(){
-     $("#qw").faceDetection({
+setTimeout(function(){
+    faceDetection({
+            id:"qw",
             complete: function (q,faces) {
                 console.log(faces);
+                var html='<img src="'+document.getElementById("qw").src+'">'
                 for (var i = 0; i < faces.length; i++) {
-                    var html='<div class="face" style=" left:'+faces[i].positionX + 'px;' +
+                    html+='<div class="face" style=" left:'+faces[i].positionX + 'px;' +
                             'top:'+     faces[i].positionY + 'px;'+
                             'width:'+  faces[i].width+ 'px;'+
                             'height:'+   faces[i].height + 'px;'+
                             '"></div>';
-                    $("#qw").after(html);
                 }
+                    document.getElementById("box").innerHTML=html;
 
             }
         })
-})
-       
+
+},10)
+        
 </script>
 </body>
 </html>
