@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>无标题文档</title>
 </head>
 <style>
@@ -72,12 +73,38 @@
 				oldx=e.x;
 				oldy=e.y;
             }
-		}
-	}
+		};
+	};
 	canvas.onmouseup=function(){
 		canvas.onmousemove=function(){
-		}
-	}
+		};
+	};
+	var touch={};
+	canvas.addEventListener('touchstart',function(e){
+		e.preventDefault();
+		var point = event.targetTouches[0];     //touches数组对象获得屏幕上所有的touch，取第一个touch
+            touch.oldPos = {x:point.pageX,y:point.pageY,time:+new Date()};  
+            //console.log(touch) ;
+	},false);
+	canvas.addEventListener('touchmove',function(e){
+
+            //当屏幕有多个touch或者页面被缩放过，就不执行move操作
+		 if(event.targetTouches.length > 1 || event.scale && event.scale !== 1) return;
+
+            var point = event.targetTouches[0];
+            //touch.endPos = {x:point.pageX - touch.start.x,y:point.pageY - touch.start.y};
+            //touch.isScrolling = Math.abs(touch.endPos.x) < Math.abs(touch.endPos.y) ? 1:0;    //isScrolling为1时，表示纵向滑动，0为横向滑动
+            /*if(touch.isScrolling === 0){
+                event.preventDefault();      //阻止触摸事件的默认行为，即阻止滚屏
+                
+            }*/
+            zfx("canvas",point.pageX,point.pageY ,touch.oldPos.x,touch.oldPos.y);
+            touch.oldPos = {x:point.pageX,y:point.pageY};
+            //console.log(touch) ;
+	},false)
+	canvas.addEventListener('touchend',function(e){
+		
+	},false)
 function save(canvas){
 	document.getElementById("temp").value=canvas.toDataURL("image/jpeg");
 }
