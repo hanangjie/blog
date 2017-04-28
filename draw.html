@@ -15,7 +15,7 @@
 </style>
 
 <body onload="draw('canvas')">
-<canvas id="canvas" width="1000" height="600" ></canvas>
+<canvas id="canvas" ></canvas>
 </body>
 
 <script>
@@ -24,6 +24,8 @@
 		if(canvas==null)
 			return false;
 		
+		canvas.width=document.body.clientWidth
+		canvas.height=document.documentElement.clientHeight-40
 		var content=canvas.getContext('2d');
 		content.lineWidth=15;
 		content.fillStyle="#fff";
