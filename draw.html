@@ -116,7 +116,7 @@
 	},false)
 function save(canvas){
 	//document.getElementById("temp").value=canvas.toDataURL("image/jpeg");
-	var w=window.open(canvas.toDataURL("image/jpeg"),"a")
+	location.href=canvas.toDataURL("image/jpeg")
 	//w.document.write("<img src='"+canvas.toDataURL("image/jpeg")+"' alt='from canvas'/>");  
 }
 	
