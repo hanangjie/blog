@@ -8,8 +8,9 @@
 	font-family:"微软雅黑";
 }
 body{
-	background: url("../img/bg2.jpg") no-repeat;
-	background-size: cover;
+	/*background: url("../img/bg2.jpg") no-repeat;
+	background-size: cover;*/
+	background: #01013a;
 }
 .bg{
 	position: fixed;
